@@ -1,3 +1,4 @@
+from itertools import accumulate, dropwhile, islice
 class LoopingFile:
     def __init__(self, path):
         self.path = path
@@ -22,11 +23,17 @@ class LoopingFile:
 
 if __name__ == '__main__':
     seen_frequencies = set()
-    frequency = 0
+
+    def not_seen(value):
+        if value in seen_frequencies:
+            return False
+        seen_frequencies.add(value)
+        return True
+
     with LoopingFile("input") as f:
-        for change in f:
-            frequency += int(change)
-            if frequency in seen_frequencies:
-                print(frequency)
-                break
-            seen_frequencies.add(frequency)
+        running_total = accumulate(map(int, f))
+        already_seen_freqs = dropwhile(
+            not_seen,
+            running_total)
+        first, = islice(already_seen_freqs, 1)
+        print(first)
