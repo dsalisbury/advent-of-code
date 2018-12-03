@@ -15,5 +15,4 @@ if __name__ == '__main__':
         for val in running_total
     )
     already_seen_freqs = (val for val, seen, _ in val_and_seen if seen)
-    first, = islice(already_seen_freqs, 1)
-    print(first)
+    print(next(already_seen_freqs))
