@@ -3,8 +3,7 @@ from itertools import accumulate, islice
 
 def looping_file(path):
     while True:
-        with open(path) as f:
-            yield from f
+        yield from open(path)
 
 
 if __name__ == '__main__':
