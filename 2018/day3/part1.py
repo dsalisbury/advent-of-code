@@ -6,11 +6,14 @@ import re
 from shapely.geometry import Point, box
 from shapely.ops import cascaded_union
 
-INPUT_LINE_RE = re.compile(r"#\d+ @ (?P<x>\d+),(?P<y>\d+): (?P<w>\d+)x(?P<h>\d+)")
+INPUT_LINE_RE = re.compile(
+    r"#(?P<number>\d+) @ (?P<x>\d+),(?P<y>\d+): (?P<w>\d+)x(?P<h>\d+)"
+)
 
 
 @dataclass
 class Region:
+    number: int
     x: int
     y: int
     w: int
