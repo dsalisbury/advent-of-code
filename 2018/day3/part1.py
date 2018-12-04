@@ -11,7 +11,7 @@ INPUT_LINE_RE = re.compile(
 )
 
 
-@dataclass
+@dataclass(eq=True, frozen=True)
 class Region:
     number: int
     x: int
